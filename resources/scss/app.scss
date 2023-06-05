@@ -1,1 +1,21 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+body {
+    font-family: 'Karla', sans-serif;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+#sidebarMenu {
+    background-color: rgb(33, 33, 35);
+}
+    table {
+        background-color: transparent !important;
+        .actions {
+            font-size: 0.8rem;
+            padding: 0 0.3rem;
+            margin-bottom: 0.2rem;
+        }
+    }

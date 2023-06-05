@@ -10,11 +10,15 @@
 
     <title>{{ config('app.name', 'Laravel') }} Boolfolio</title>
 
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css' integrity='sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==' crossorigin='anonymous' referrerpolicy='no-referrer' />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'
+        integrity='sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=='
+        crossorigin='anonymous' referrerpolicy='no-referrer' />
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <!-- Vite -->
     @vite(['resources/js/app.js'])
@@ -22,9 +26,11 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">BoolFolio</a>
-            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-3 shadow">
+            <a class="navbar-brand col-md-3 col-lg-2 mr-0" href="#">> Boolfolio</a>
+            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
+                data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <ul class="navbar-nav px-3">
@@ -36,29 +42,31 @@
 
         <div class="container-fluid vh-100">
             <div class="row h-100">
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse px-0">
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{route('admin.dashboard')}}">
+                                <a class="nav-link text-white {{Route::currentRouteName() == 'admin.dashboard' ? 'bg-primary' : ''}}"
+                                    aria-current="page" href="{{route('admin.dashboard')}}">
                                     <i class="fa-solid fa-gauge"></i>
                                     {{__('Dashboard')}}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('admin.projects.index')}}">
+                                <a class="nav-link text-white {{Route::currentRouteName() == 'admin.projects.index' ? 'bg-primary' : ''}}"
+                                    href="{{route('admin.projects.index')}}">
                                     <i class="fa-solid fa-thumbtack"></i>
                                     {{__('Projects')}}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="#">
+                                <a class="nav-link text-white" href="#">
                                     <i class="fa-solid fa-bookmark"></i>
                                     {{__('Categories')}}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="#">
+                                <a class="nav-link text-white" href="#">
                                     <i class="fa-solid fa-tags"></i>
                                     Tags
                                 </a>
