@@ -1,8 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
-    <h2>{{__('Projects')}}</h2>
+<div class="container bd-dark text-white">
+    <div class="top top d-flex justify-content-between align-items-center pb-5">
+        <h2>{{__('Projects')}}</h2>
+        <a href="{{route('admin.projects.create')}}" class="text-decoration-none">
+            <span>Add new project</span>
+        </a>
+    </div>
+    </div>
+
     <table class="table">
         <thead>
             <tr>
