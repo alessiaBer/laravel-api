@@ -79,6 +79,8 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $val_data = $request->validated();
+        $slug = Project::generateSlug($val_data['title']);
+        $val_data['slug'] = $slug;
 
         $project->update($val_data);
 
