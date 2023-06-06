@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreProjectRequest extends FormRequest
 {
@@ -27,7 +28,8 @@ class StoreProjectRequest extends FormRequest
             'title' => 'required|max:150',
             'description' => 'required',
             'project_image' => 'required|max:255',
-            'project_url' => 'nullable|max:255'
+            'project_live_url' => 'nullable|max:255',
+            'project_source_code' => 'nullable|max:255'
         ];
     }
 }
