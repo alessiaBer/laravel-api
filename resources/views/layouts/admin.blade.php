@@ -33,11 +33,23 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <ul class="navbar-nav px-3">
-                <li class="nav-item text-nowrap">
-                    <a class="nav-link" href="#">Sign out</a>
-                </li>
-            </ul>
+            <div class="dropdown open">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    {{ Auth::user()->name }}
+                </button>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="triggerId">
+                    <a class="dropdown-item" href="{{ route('admin.dashboard') }}">{{__('Home')}}</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </div>
         </nav>
 
         <div class="container-fluid vh-100">
