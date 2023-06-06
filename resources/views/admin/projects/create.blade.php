@@ -29,9 +29,16 @@
                 @enderror
             </div>
             <div class="col-12">
-                <label for="project_url" class="form-label">Project url</label>
-                <input type="text" class="form-control @error('project_url') is-invalid @enderror" id="project_url" name="project_url" placeholder="http://project.dev" value="{{ old('project_url') }}">
-                @error('project_url')
+                <label for="project_live_url" class="form-label">Live url</label>
+                <input type="text" class="form-control @error('project_live_url') is-invalid @enderror" id="project_live_url" name="project_live_url" placeholder="http://project.dev" value="{{ old('project_live_url') }}">
+                @error('project_live_url')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+            <div class="col-12">
+                <label for="project_source_code" class="form-label">Source Code</label>
+                <input type="text" class="form-control @error('project_source_code') is-invalid @enderror" id="project_source_code" name="project_source_code" placeholder="http://project.dev" value="{{ old('project_source_code') }}">
+                @error('project_source_code')
                     <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>

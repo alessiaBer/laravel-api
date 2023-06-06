@@ -20,8 +20,9 @@
                 <th scope="col">Id</th>
                 <th scope="col">Title</th>
                 <th scope="col">Image</th>
-                <th scope="col">Url</th>
-                <th scope="col" width="15%">Actions</th>
+                <th scope="col">Live Url</th>
+                <th scope="col">Src Code</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -32,7 +33,8 @@
                 <td>
                     <img src="{{$project->project_image}}" alt="{{$project->title}}" height="100">
                 </td>
-                <td>{{$project->project_url}}</td>
+                <td>{{$project->project_live_url}}</td>
+                <td>{{$project->project_source_code}}</td>
                 <td>
                     <!-- metti route(..., $project invece di $project->id così l'url prende lo slug) e ricordarsi i parameters i web.php-->
                     <a href="{{route('admin.projects.show', $project)}}"
