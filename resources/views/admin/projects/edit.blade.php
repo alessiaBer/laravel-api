@@ -4,7 +4,7 @@
 <section>
     <div class="container create_container py-5">
         @include('partials.validation_error')
-        <form class="row g-3" action="{{route('admin.projects.update', $project->id)}}" method="post">
+        <form class="row g-3" action="{{route('admin.projects.update', $project)}}" method="post">
             @csrf
             @method('PUT')
             <div class="col-12">
@@ -36,7 +36,7 @@
                 @enderror
             </div>
             <div class="col-md-4 mx-auto text-center pt-3">
-                <button type="submit" class="btn btn-light text-dark px-4">Sign in</button>
+                <button type="submit" class="btn btn-light text-dark px-4">Update</button>
             </div>
         </form>
     </div>
