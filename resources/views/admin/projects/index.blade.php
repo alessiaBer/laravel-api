@@ -39,7 +39,7 @@
                         class="btn btn-primary text-decoration-none actions">
                         <span>View</span>
                     </a>
-                    <a href="{{route('admin.projects.edit', $project->id)}}"
+                    <a href="{{route('admin.projects.edit', $project)}}"
                         class="btn btn-warning text-decoration-none actions">
                         <span>Edit</span>
                     </a>
