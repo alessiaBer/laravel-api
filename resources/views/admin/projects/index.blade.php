@@ -34,7 +34,8 @@
                 </td>
                 <td>{{$project->project_url}}</td>
                 <td>
-                    <a href="{{route('admin.projects.show', $project->id)}}"
+                    <!-- metti route(..., $project invece di $project->id così l'url prende lo slug) e ricordarsi i parameters i web.php-->
+                    <a href="{{route('admin.projects.show', $project)}}"
                         class="btn btn-primary text-decoration-none actions">
                         <span>View</span>
                     </a>
