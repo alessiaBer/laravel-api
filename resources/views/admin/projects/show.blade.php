@@ -9,8 +9,16 @@
             <img src="{{$project->project_image}}" alt="{{$project->title}}" height="300">
         </div>
         <div class="project_info ps-4">
+            @if($project->type)
+                <p><strong>Type: </strong>{{$project->type->name}}</p>
+            @endif
             <p><strong>Description:</strong><br>{{$project->description}}</p>
-            <span class="d-block"><strong>Link: </strong>{{$project->project_url}}</span>
+            <span class="d-block"><strong>Link: </strong>
+                <ul>
+                    <li>{{$project->project_live_url}}</li>
+                    <li>{{$project->project_source_code}}</li>
+                </ul>
+            </span>
         </div>
     </div>
 </div>

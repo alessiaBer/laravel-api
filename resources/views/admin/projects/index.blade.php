@@ -20,6 +20,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">Title</th>
                 <th scope="col">Image</th>
+                <th scope="col">Type</th>
                 <th scope="col">Live Url</th>
                 <th scope="col">Src Code</th>
                 <th scope="col">Actions</th>
@@ -32,6 +33,13 @@
                 <td>{{$project->title}}</td>
                 <td>
                     <img src="{{$project->project_image}}" alt="{{$project->title}}" height="100">
+                </td>
+                <td>
+                    @if($project->type)
+                        {{$project->type->name}}
+                    @else 
+                        ---
+                    @endif
                 </td>
                 <td>{{$project->project_live_url}}</td>
                 <td>{{$project->project_source_code}}</td>
