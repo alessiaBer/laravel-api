@@ -72,9 +72,10 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#">
+                                <a class="nav-link text-white {{Route::currentRouteName() == 'admin.types.index' ? 'bg-primary' : ''}}" 
+                                    href="{{route('admin.types.index')}}">
                                     <i class="fa-solid fa-bookmark"></i>
-                                    {{__('Categories')}}
+                                    {{__('Typologies')}}
                                 </a>
                             </li>
                             <li class="nav-item">
