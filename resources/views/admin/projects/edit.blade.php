@@ -15,6 +15,18 @@
                 @enderror
             </div>
             <div class="col-12">
+                <label for="type_id" class="form-label">Type</label>
+                <select class="form-select @error('type_id') is-invalid @enderror" name="type_id" id="type_id">
+                    <option value="">Select the project type</option>
+                    @foreach($types as $type)
+                    <option value="{{$type->id}}" {{ $type->id == old('type_id', '') ? 'selected' : ''}}>{{$type->name}}</option>
+                    @endforeach
+                </select>
+                @error('type_id')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+            <div class="col-12">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" type="text" id="description" name="description" rows="5" placeholder="Type your project description here...">{{ $project->description }}</textarea>
                 @error('description')
