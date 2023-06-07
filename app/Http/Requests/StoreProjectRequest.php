@@ -30,7 +30,7 @@ class StoreProjectRequest extends FormRequest
             'project_image' => 'required|max:255',
             'project_live_url' => 'nullable|max:255',
             'project_source_code' => 'nullable|max:255',
-            'type_id' => ['exists: types, id']
+            'type_id' => 'exists:types,id'
         ];
     }
 }
