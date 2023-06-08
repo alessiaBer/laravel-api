@@ -16,7 +16,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return view('admin.types.index');
+        $types = Type::all();
+        return view('admin.types.index', compact('types'));
     }
 
     /**
@@ -37,7 +38,14 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        //
+
+        $val_data = $request->validated();
+        $slug = Type::generateSlug($val_data['name']);
+        $val_data['slug'] = $slug;
+
+        Type::create($val_data);
+
+        return to_route('admin.types.index')->with('message', 'Type created successfully!');
     }
 
     /**

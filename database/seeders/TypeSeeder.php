@@ -17,13 +17,11 @@ class TypeSeeder extends Seeder
     public function run()
     {
         $types = ['Backend Development', 'Branding', 'Content Creation', 'Design UX/UI', 'Frontend Development', 'Game Design', 'Fullstack Development'];
-
         foreach($types as $type) {
             $newType = new Type();
             $newType->name = $type;
-            $newType->slug = Str::slug('name');
+            $newType->slug = Str::slug($type);
             $newType->save();
         }
-
     }
 }
