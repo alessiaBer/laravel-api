@@ -18,7 +18,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::orderByDesc('id')->get();
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -46,7 +46,10 @@ class ProjectController extends Controller
         $slug = Project::generateSlug($val_data['title']);
         $val_data['slug'] = $slug;
 
-        Project::create($val_data);
+        $new_project = Project::create($val_data);
+        if($request->has('technologies')) {
+            $new_project->technologies()->attach($request->technologies);
+        }
 
         return to_route('admin.projects.index')->with('message', 'Project created successfully!');
     }
@@ -71,7 +74,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -89,6 +93,9 @@ class ProjectController extends Controller
 
         $project->update($val_data);
 
+        if($request->has('technologies')) {
+            $project->technologies()->sync($request->technologies);
+        }
         return to_route('admin.projects.index')->with('message', 'Project updated successfully');
     }
 
