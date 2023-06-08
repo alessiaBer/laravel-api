@@ -84,10 +84,23 @@
         </div>
     </div>
     <div class="right w-50 ps-5">
-        <span class="d-block pt-5 text-secondary">
-            Hey Bro!<br>
-            ..Select a typology to see the related projects..
-        </span>
+        @if($related_projects)
+        <h4>{{$type->name}}</h4>
+        <span>Related projects:</span>
+        
+        <ul class="list-unstyled">
+            <li></li>
+            @forelse($related_projects as $related_project) 
+                <li>
+                    <a href="{{route('admin.projects.show', $related_project)}}">{{$related_project->title}}</a>
+                </li>
+            @empty
+                <li>There are no related projects!</li>
+            @endforelse
+        </ul>
+        @else 
+        <span class="">Select a typology to see the related projects</span>
+        @endif
     </div>
 </div>
 @endsection

@@ -56,7 +56,10 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        return view('admin.types.show', compact('type'));
+        $types = Type::orderBy('name')->get();
+        $related_projects = $type->projects;
+        //dd($related_projects);
+        return view('admin.types.index', compact('types', 'type', 'related_projects'));
     }
 
     /**

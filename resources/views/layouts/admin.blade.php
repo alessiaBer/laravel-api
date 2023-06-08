@@ -60,7 +60,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white {{Route::currentRouteName() == 'admin.dashboard' ? 'bg-primary' : ''}}"
                                     aria-current="page" href="{{route('admin.dashboard')}}">
-                                    <i class="fa-solid fa-gauge"></i>
+                                    <i class="fa-regular fa-chart-bar"></i>
                                     {{__('Dashboard')}}
                                 </a>
                             </li>
@@ -79,9 +79,10 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#">
-                                    <i class="fa-solid fa-tags"></i>
-                                    Tags
+                                <a class="nav-link text-white {{Route::currentRouteName() == 'admin.technologies.index' ? 'bg-primary' : ''}}" 
+                                   href="{{route('admin.technologies.index')}}">
+                                    <i class="fa-solid fa-screwdriver"></i>
+                                    {{__('Technologies')}}
                                 </a>
                             </li>
 
