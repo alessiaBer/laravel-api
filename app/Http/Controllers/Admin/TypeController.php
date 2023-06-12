@@ -17,7 +17,8 @@ class TypeController extends Controller
     public function index()
     {
         $types = Type::orderBy('name')->get();
-        return view('admin.types.index', compact('types'));
+        $single_type = null;
+        return view('admin.types.index', compact('types', 'single_type'));
     }
 
     /**
@@ -56,10 +57,11 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
+        $single_type = $type;
         $types = Type::orderBy('name')->get();
         $related_projects = $type->projects;
         //dd($related_projects);
-        return view('admin.types.index', compact('types', 'type', 'related_projects'));
+        return view('admin.types.index', compact('types', 'single_type', 'related_projects'));
     }
 
     /**

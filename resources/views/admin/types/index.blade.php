@@ -26,6 +26,7 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Projects</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -34,6 +35,7 @@
                     <tr>
                         <td scope="row">{{$type->id}}</td>
                         <td>{{$type->name}}</td>
+                        <td>{{$type->projects->count()}}</td>
                         <td>
                             <a href="{{route('admin.types.show', $type)}}"
                                 class="btn btn-primary text-decoration-none actions">
@@ -84,10 +86,31 @@
         </div>
     </div>
     <div class="right w-50 ps-5">
+        @if($single_type)
+        <div class="top_related d-flex justify-content-between">
+            <h4>{{$single_type->name}}</h4>
+            <a href="{{route('admin.types.index')}}" class="btn btn-outline-light rounded-circle">X</a>    
+        </div>
+        
+    
+        <span>Related projects:</span> 
+        
+        <ul class="list-unstyled">
+            <li></li>
+            @forelse($related_projects as $related_project) 
+                <li>
+                    <a href="{{route('admin.projects.show', $related_project)}}">{{$related_project->title}}</a>
+                </li>
+            @empty
+                <li>There are no related projects!</li>
+            @endforelse
+        </ul>
+        @else 
         <span class="d-block pt-5 text-secondary">
             Hey Bro!<br>
             ..Select a typology to see the related projects..
         </span>
+        @endif
     </div>
 </div>
 @endsection
