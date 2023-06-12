@@ -27,7 +27,7 @@ class TechnologyController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -38,7 +38,13 @@ class TechnologyController extends Controller
      */
     public function store(StoreTechnologyRequest $request)
     {
-        //
+        $val_data = $request->validated();
+        $slug = Technology::generateSlug($val_data['name']);
+        $val_data['slug'] = $slug;
+
+        Technology::create($val_data);
+
+        return to_route('admin.technologies.index')->with('message', 'Technology created successfully!');
     }
 
     /**

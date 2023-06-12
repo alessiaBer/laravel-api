@@ -25,7 +25,7 @@ class StoreTechnologyRequest extends FormRequest
     {
         return [
             "name" => "required|max:50",
-            "tech_img_url" => "required|max:255"
+            "tech_img_url" => "nullable|max:255"
         ];
     }
 }
