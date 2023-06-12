@@ -32,7 +32,7 @@
                 <th scope="row">{{$project->id}}</th>
                 <td>{{$project->title}}</td>
                 <td>
-                    <img src="{{$project->project_image}}" alt="{{$project->title}}" height="100">
+                    <img src="{{asset('storage/' . $project->project_image)}}" alt="{{$project->title}}" height="100">
                 </td>
                 <td>
                     @if($project->type)

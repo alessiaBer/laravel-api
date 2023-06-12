@@ -4,7 +4,7 @@
 <section>
     <div class="container create_container py-5">
         @include('partials.validation_error')
-        <form class="row g-3" action="{{route('admin.projects.store')}}" method="post">
+        <form class="row g-3" action="{{route('admin.projects.store')}}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="col-12">
@@ -55,7 +55,7 @@
             </div>
             <div class="col-12">
                 <label for="project_image" class="form-label">Project image</label>
-                <input type="text" class="form-control @error('project_image') is-invalid @enderror" id="project_image"
+                <input type="file" class="form-control @error('project_image') is-invalid @enderror" id="project_image"
                     name="project_image" placeholder="Image URL" value="{{ old('project_image') }}">
                 @error('project_image')
                 <small class="text-danger">{{ $message }}</small>

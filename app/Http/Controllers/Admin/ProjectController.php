@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Http\Controllers\Controller;
 use App\Models\Technology;
 use App\Models\Type;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -45,6 +46,11 @@ class ProjectController extends Controller
         $val_data = $request->validated();
         $slug = Project::generateSlug($val_data['title']);
         $val_data['slug'] = $slug;
+
+        if($request->hasFile('project_image')) {
+            $img_path = Storage::put('uploads', $request->project_image);
+            $val_data['project_image'] = $img_path;
+        }
 
         $new_project = Project::create($val_data);
         if($request->has('technologies')) {
@@ -91,6 +97,14 @@ class ProjectController extends Controller
         $slug = Project::generateSlug($val_data['title']);
         $val_data['slug'] = $slug;
 
+        if($request->hasFile('project_image')) {
+            if($project->project_image) {
+                Storage::delete($project->project_image);
+            }
+            $img_path = Storage::put('uploads', $request->project_image);
+            $val_data['project_image'] = $img_path;
+        }
+
         $project->update($val_data);
 
         if($request->has('technologies')) {
@@ -108,6 +122,9 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->technologies()->sync([]);
+        if($project->project_image) {
+            Storage::delete($project->project_image);
+        }
         $project->delete();
         return to_route('admin.projects.index')->with('message', 'Project deleted successfully!');
     }
