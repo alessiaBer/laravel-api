@@ -10,17 +10,26 @@
 <div class="container text-white py-5 d-flex justify-content-between">
     <div class="left w-50 pe-5">
         <h4>Add new technology</h4>
+        @include('partials.validation_error')
         <form action="{{route('admin.technologies.store')}}" method="post">
             @csrf
             <div class="mb-3">
                 <label for="name">Technology name</label>
-                <input type="text" class="form-control" placeholder="Type the technology name.." aria-label="Username"
-                    aria-describedby="basic-addon1" name="name" id="name">
+                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                    placeholder="Type the technology name.." aria-label="Username" aria-describedby="basic-addon1"
+                    name="name" id="name" value="{{old('name')}}">
+                @error('name')
+                <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="name">Technology image url</label>
-                <input type="text" class="form-control" placeholder="Type the technology image url.." aria-label="Username"
-                    aria-describedby="basic-addon1" name="tech_img_url" id="tech_img_url">
+                <input type="text" class="form-control @error('tech_img_url') is-invalid @enderror"
+                    placeholder="Type the technology image url.." aria-label="Username" aria-describedby="basic-addon1"
+                    name="tech_img_url" id="tech_img_url" value="{{old('tech_img_url')}}">
+                @error('tech_img_url')
+                <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
             <button type="submit" class="btn btn-light">Store</button>
         </form>
@@ -76,8 +85,8 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <form action="{{route('admin.technologies.destroy', $technology->slug)}}" method="post"
-                                                class="d-inline-block">
+                                            <form action="{{route('admin.technologies.destroy', $technology->slug)}}"
+                                                method="post" class="d-inline-block">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>

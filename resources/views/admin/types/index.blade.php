@@ -7,15 +7,21 @@
     <strong>{{session('message')}}</strong>
 </div>
 @endif
+<div class="w-50">
+    @include('partials.validation_error')
+</div>
 <form action="{{route('admin.types.store')}}" method="post" class="w-50">
     @csrf
     <label for="name">Add new type</label>
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Type the typology name" aria-label="Username"
-            aria-describedby="basic-addon1" name="name" id="name">
+    <div class="input-group">
+        <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Type the typology name"
+            aria-label="Username" aria-describedby="basic-addon1" name="name" id="name" value="{{old('name')}}">
         <span class="input-group-text" id="basic-addon1"><button class="border-0 bg-transparent"
                 type="submit">+</button></span>
     </div>
+    @error('name')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
 </form>
 <div class="container text-white py-5 d-flex justify-content-between">
     <div class="left w-50">
@@ -89,23 +95,23 @@
         @if($single_type)
         <div class="top_related d-flex justify-content-between">
             <h4>{{$single_type->name}}</h4>
-            <a href="{{route('admin.types.index')}}" class="btn btn-outline-light rounded-circle">X</a>    
+            <a href="{{route('admin.types.index')}}" class="btn btn-outline-light rounded-circle">X</a>
         </div>
-        
-    
-        <span>Related projects:</span> 
-        
+
+
+        <span>Related projects:</span>
+
         <ul class="list-unstyled">
             <li></li>
-            @forelse($related_projects as $related_project) 
-                <li>
-                    <a href="{{route('admin.projects.show', $related_project)}}">{{$related_project->title}}</a>
-                </li>
+            @forelse($related_projects as $related_project)
+            <li>
+                <a href="{{route('admin.projects.show', $related_project)}}">{{$related_project->title}}</a>
+            </li>
             @empty
-                <li>There are no related projects!</li>
+            <li>There are no related projects!</li>
             @endforelse
         </ul>
-        @else 
+        @else
         <span class="d-block pt-5 text-secondary">
             Hey Bro!<br>
             ..Select a typology to see the related projects..
