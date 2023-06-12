@@ -9,6 +9,39 @@
 @endif
 <div class="container text-white py-5 d-flex justify-content-between">
     <div class="left w-50 pe-5">
+        @if($single_technology)
+        <div class="edit_title d-flex justify-content-between mt-5">
+            <h4>Edit <span class="text-danger">{{$single_technology->name}}</span> technology</h4>
+            <a href="{{route('admin.technologies.index')}}" class="btn btn-outline-light rounded-circle">X</a>
+        </div>
+        <form action="{{route('admin.technologies.update', $single_technology)}}" method="post">
+            @csrf
+            @method('PUT')
+            <div class="mb-3">
+                <label for="name">Technology name</label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                    placeholder="Type the technology name.." aria-label="Username" aria-describedby="basic-addon1"
+                    name="name" id="name" value="{{$single_technology->name}}">
+                @error('name')
+                <small class="text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+            <div class="mb-3 d-flex">
+                <img src="{{$single_technology->tech_img_url}}" alt="">
+                <div class="input_group flex-grow-1 align-self-center ps-1">
+                    <label for="name">Technology image url</label>
+                    <input type="text" class="form-control @error('tech_img_url') is-invalid @enderror"
+                        placeholder="Type the technology image url.." aria-label="Username" aria-describedby="basic-addon1"
+                        name="tech_img_url" id="tech_img_url" value="{{$single_technology->tech_img_url}}">
+
+                </div>
+                @error('tech_img_url')
+                <small class="text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+            <button type="submit" class="btn btn-light">Update</button>
+        </form>
+        @else
         <h4>Add new technology</h4>
         @include('partials.validation_error')
         <form action="{{route('admin.technologies.store')}}" method="post">
@@ -33,6 +66,7 @@
             </div>
             <button type="submit" class="btn btn-light">Store</button>
         </form>
+        @endif
 
     </div>
     <div class="right w-50">

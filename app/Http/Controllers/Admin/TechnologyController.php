@@ -17,7 +17,8 @@ class TechnologyController extends Controller
     public function index()
     {
         $technologies = Technology::orderBy('name')->get();
-        return view('admin.technologies.index', compact('technologies'));
+        $single_technology = null;
+        return view('admin.technologies.index', compact('technologies', 'single_technology'));
     }
 
     /**
@@ -66,7 +67,9 @@ class TechnologyController extends Controller
      */
     public function edit(Technology $technology)
     {
-        //
+        $single_technology = $technology;
+        $technologies = Technology::orderBy('name')->get();
+        return view('admin.technologies.index', compact('technologies', 'single_technology'));
     }
 
     /**
@@ -78,7 +81,13 @@ class TechnologyController extends Controller
      */
     public function update(UpdateTechnologyRequest $request, Technology $technology)
     {
-        //
+        $val_data = $request->validated();
+        $slug = Technology::generateSlug($val_data['name']);
+        $val_data['slug'] = $slug;
+
+        $technology->update($val_data);
+
+        return to_route('admin.technologies.index')->with('message', 'Technology updated successfully');
     }
 
     /**
