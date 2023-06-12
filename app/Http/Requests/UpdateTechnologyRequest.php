@@ -13,7 +13,7 @@ class UpdateTechnologyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdateTechnologyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "name" => "required|max:50",
+            "tech_img_url" => "required|max:255"
         ];
     }
 }
