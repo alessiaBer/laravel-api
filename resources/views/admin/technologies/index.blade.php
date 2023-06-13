@@ -2,13 +2,13 @@
 
 @section('content')
 <h2 class="py-4">{{__('Technologies')}}</h2>
-@if (session('message'))
-<div class="alert alert-success w-50" role="alert">
-    <strong>{{session('message')}}</strong>
-</div>
-@endif
 <div class="container text-white py-5 d-flex justify-content-between">
     <div class="left w-50 pe-5">
+        @if (session('message'))
+        <div class="alert alert-success" role="alert">
+            <strong>{{session('message')}}</strong>
+        </div>
+        @endif
         @if($single_technology)
         <div class="edit_title d-flex justify-content-between mt-5">
             <h4>Edit <span class="text-danger">{{$single_technology->name}}</span> technology</h4>
@@ -31,8 +31,9 @@
                 <div class="input_group flex-grow-1 align-self-center ps-1">
                     <label for="name">Technology image url</label>
                     <input type="text" class="form-control @error('tech_img_url') is-invalid @enderror"
-                        placeholder="Type the technology image url.." aria-label="Username" aria-describedby="basic-addon1"
-                        name="tech_img_url" id="tech_img_url" value="{{$single_technology->tech_img_url}}">
+                        placeholder="Type the technology image url.." aria-label="Username"
+                        aria-describedby="basic-addon1" name="tech_img_url" id="tech_img_url"
+                        value="{{$single_technology->tech_img_url}}">
 
                 </div>
                 @error('tech_img_url')
