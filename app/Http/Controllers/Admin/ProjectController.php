@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -19,7 +20,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::orderByDesc('id')->get();
+        //dd(Auth::id());
+        $projects = Auth::user()->projects()->orderByDesc('id')->get();
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -81,7 +83,10 @@ class ProjectController extends Controller
     {
         $types = Type::all();
         $technologies = Technology::all();
-        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
+        if (Auth::id() === $project->user_id) {
+            return view('admin.projects.edit', compact('project', 'types', 'technologies'));
+        }
+        abort(403);
     }
 
     /**
