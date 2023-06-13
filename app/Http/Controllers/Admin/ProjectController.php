@@ -48,6 +48,7 @@ class ProjectController extends Controller
         $val_data = $request->validated();
         $slug = Project::generateSlug($val_data['title']);
         $val_data['slug'] = $slug;
+        $val_data['user_id'] = Auth::id();
 
         if($request->hasFile('project_image')) {
             $img_path = Storage::put('uploads', $request->project_image);
