@@ -18,7 +18,8 @@ class TypeController extends Controller
     {
         $types = Type::orderBy('name')->get();
         $single_type = null;
-        return view('admin.types.index', compact('types', 'single_type'));
+        $edit_type = null;
+        return view('admin.types.index', compact('types', 'single_type', 'edit_type'));
     }
 
     /**
@@ -72,7 +73,10 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        $edit_type = $type;
+        $single_type = null;
+        $types = Type::orderBy('name')->get();
+        return view('admin.types.index', compact('types', 'edit_type', 'single_type'));
     }
 
     /**
@@ -84,7 +88,13 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $val_data = $request->validated();
+        $slug = Type::generateSlug($val_data['name']);
+        $val_data['slug'] = $slug;
+
+        $type->update($val_data);
+
+        return to_route('admin.types.index')->with('message', 'Type updated successfully');
     }
 
     /**

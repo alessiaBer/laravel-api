@@ -20,7 +20,7 @@
                 type="submit">+</button></span>
     </div>
     @error('name')
-        <small class="text-danger">{{ $message }}</small>
+    <small class="text-danger">{{ $message }}</small>
     @enderror
 </form>
 <div class="container text-white py-5 d-flex justify-content-between">
@@ -40,7 +40,27 @@
                     @foreach($types as $type)
                     <tr>
                         <td scope="row">{{$type->id}}</td>
-                        <td>{{$type->name}}</td>
+                        <td>
+                            @if($type == $edit_type)
+                            <form action="{{route('admin.types.update', $edit_type)}}" method="post">
+                                @csrf
+                                @method('PUT')
+                                <div class="input-group">
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                        placeholder="Type the typology name" aria-label="Username"
+                                        aria-describedby="basic-addon1" name="name" id="name" value="{{$edit_type->name}}">
+                                    <span class="input-group-text" id="basic-addon1"><button
+                                            class="border-0 bg-transparent" type="submit">OK</button></span>
+                                </div>
+                                @error('name')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </form>
+                            @else
+
+                            {{$type->name}}
+                            @endif
+                        </td>
                         <td>{{$type->projects->count()}}</td>
                         <td>
                             <a href="{{route('admin.types.show', $type)}}"
