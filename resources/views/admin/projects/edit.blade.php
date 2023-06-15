@@ -69,7 +69,7 @@
                 @enderror
             </div>
             <div class="col-12">
-                <label for="project_live_url" class="form-label">Project url</label>
+                <label for="project_live_url" class="form-label">Live url</label>
                 <input type="text" class="form-control @error('project_live_url') is-invalid @enderror"
                     id="project_live_url" name="project_live_url" placeholder="http://project.dev"
                     value="{{ $project->project_live_url }}">
@@ -78,7 +78,7 @@
                 @enderror
             </div>
             <div class="col-12">
-                <label for="project_source_code" class="form-label">Project url</label>
+                <label for="project_source_code" class="form-label">Source code</label>
                 <input type="text" class="form-control @error('project_source_code') is-invalid @enderror"
                     id="project_source_code" name="project_source_code" placeholder="http://project.dev"
                     value="{{ $project->project_source_code }}">
