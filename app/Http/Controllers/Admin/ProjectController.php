@@ -55,6 +55,11 @@ class ProjectController extends Controller
             $val_data['project_image'] = $img_path;
         }
 
+        if($request->hasFile('second_img')) {
+            $img_path = Storage::put('uploads', $request->second_img);
+            $val_data['second_img'] = $img_path;
+        }
+
         $new_project = Project::create($val_data);
         if($request->has('technologies')) {
             $new_project->technologies()->attach($request->technologies);
@@ -109,6 +114,13 @@ class ProjectController extends Controller
             }
             $img_path = Storage::put('uploads', $request->project_image);
             $val_data['project_image'] = $img_path;
+        }
+        if($request->hasFile('second_img')) {
+            if($project->second_img) {
+                Storage::delete($project->second_img);
+            }
+            $img_path = Storage::put('uploads', $request->second_img);
+            $val_data['second_img'] = $img_path;
         }
 
         $project->update($val_data);

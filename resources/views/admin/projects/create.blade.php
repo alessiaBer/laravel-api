@@ -56,8 +56,16 @@
             <div class="col-12">
                 <label for="project_image" class="form-label">Project image</label>
                 <input type="file" class="form-control @error('project_image') is-invalid @enderror" id="project_image"
-                    name="project_image" placeholder="Image URL" value="{{ old('project_image') }}">
+                    name="project_image" placeholder="Image path" value="{{ old('project_image') }}">
                 @error('project_image')
+                <small class="text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+            <div class="col-12">
+                <label for="second_img" class="form-label">Other Image</label>
+                <input type="file" class="form-control @error('second_img') is-invalid @enderror" id="second_img"
+                    name="second_img" placeholder="Image path" value="{{ old('second_img') }}">
+                @error('second_img')
                 <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>

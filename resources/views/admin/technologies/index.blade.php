@@ -27,7 +27,7 @@
                 @enderror
             </div>
             <div class="mb-3 d-flex">
-                <img src="{{$single_technology->tech_img_url}}" alt="">
+                <img src="{{$single_technology->tech_img_url}}" alt="" width="100px">
                 <div class="input_group flex-grow-1 align-self-center ps-1">
                     <label for="name">Technology image url</label>
                     <input type="text" class="form-control @error('tech_img_url') is-invalid @enderror"
