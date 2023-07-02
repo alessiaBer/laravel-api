@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Project;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
 class ProjectSeeder extends Seeder
@@ -15,18 +14,22 @@ class ProjectSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
-        for ($i=0; $i < 10; $i++) {
-
-            $project = new Project();
-            $project->title = $faker->sentence(4);
-            $project->slug = Str::slug($project->title, '-');
-            $project->description = $faker->text();
-            $project->project_image = 'placeholders/' . $faker->image('storage/app/public/placeholders/', fullPath: false, category: 'Projects', format: 'jpg', word: $project->title);
-            $project->project_live_url = $faker->url();
-            $project->project_source_code = $faker->url();
-            $project->save();
+        $projects = config('projects');
+        foreach ($projects as $project) {
+            $newProject = new Project();
+            $newProject->user_id = 1;
+            $newProject->type_id = $project['type_id'];
+            $newProject->title = $project['title'];
+            $newProject->slug = Str::slug($newProject->title, '-');
+            $newProject->description = $project['description'];
+            $newProject->project_image = $project['project_image'];
+            $newProject->second_img = $project['second_img'];
+            /* $newProject->project_image = 'placeholders/' . $faker->image('storage/app/public/placeholders/', fullPath: false, category: 'Projects', format: 'jpg', word: $newProject->title); */
+            $newProject->project_live_url = $project['project_live_url'];
+            $newProject->project_source_code = $project['project_source_code'];
+            $newProject->save();
         }
 
     }

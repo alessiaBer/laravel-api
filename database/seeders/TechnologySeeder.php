@@ -6,7 +6,6 @@ use App\Models\Technology;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-use Faker\Generator as Faker;
 
 class TechnologySeeder extends Seeder
 {
@@ -15,14 +14,14 @@ class TechnologySeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
-        $technologies = ['Angular', 'CSS', 'Laravel', 'JavaScript', 'PHP', 'SASS', 'VueJS'];
+        $technologies = config('technologies');
         foreach ($technologies as $technology) {
             $newTechnology = new Technology();
-            $newTechnology->name = $technology;
+            $newTechnology->name = $technology['name'];
             $newTechnology->slug = Str::slug($technology);
-            $newTechnology->tech_img_url = $faker->imageUrl(100, 100);
+            $newTechnology->tech_img_url = $technology['tech_img_url'];
             $newTechnology->save();
         }
     }
