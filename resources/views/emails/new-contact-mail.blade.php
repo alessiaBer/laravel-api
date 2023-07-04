@@ -6,7 +6,9 @@
     <title>New Contact</title>
 </head>
 <body>
-    <h1>Ciao!</h1>
-    {{$lead->name}}
+    <h3>{{$lead->name}}</h3>
+    <span>{{$lead->address}}</span>
+    <p>Ti ha inviato un messaggio:</p>
+    <p>{{$lead->mailContent}}</p>
 </body>
 </html>
