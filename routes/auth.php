@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
     /* si commentano per fermare la registrazione nella dashboard */
-    Route::get('register', [RegisteredUserController::class, 'create'])
+    /* Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::post('register', [RegisteredUserController::class, 'store']); */
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
